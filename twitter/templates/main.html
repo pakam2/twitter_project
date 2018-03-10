@@ -7,6 +7,29 @@
 
 {% block body %}
 <p>Hello world</p>
+<br>
+<a href="/new_tweet">Dodaj nowy wpis</a>
+<br>
+
+{% if user.is_authenticated %}
+<a href="/logout">Wyloguj</a>
+  {% else %}
+  <a href="/login">Zaloguj</a>
+{% endif %}
+<br>
+<br>
+<table style="border:1px solid black">
+  <tr>
+    <td style="border:1px solid">Użytkownik</td>
+    <td style="border:1px solid">Wpis</td>
+  </tr>
+  {% for k in tweets %}
+    <tr>
+      <td style="border:1px solid">{{ k.user }}</td>
+      <td style="border:1px solid">{{ k.content }}</td>
+      </tr>
+  {% endfor %}
+</table>
 
 
 {% endblock %}

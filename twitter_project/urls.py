@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from twitter.views import MainView
+from twitter.views import MainView, AddTweetView, LoginView, LogoutView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', MainView.as_view(), name="main-view"),
+    url(r'^new_tweet/', AddTweetView.as_view(), name="add-tweet"),
+    url(r'^login/', LoginView.as_view(), name='login-view'),
+    url(r'^logout/', LogoutView.as_view(), name='logout-view'),
 ]
