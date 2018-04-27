@@ -4,11 +4,25 @@ from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import Tweet
 from .forms import TweetForm, LoginForm
 
 # Create your views here.
 
+
+# for now a basic version
+class SignupView(View):
+
+    def get (self, request):
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form})
+
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login/')
 
 class LoginView(View):
 
@@ -26,11 +40,11 @@ class LoginView(View):
                 login(request, user)
                 return redirect('/')
             else:
-                return HttpResponse("Nie ma takiego użytkownika")
+                return HttpResponse("Nie poprawne hasło lub login")
 
 
 
-class MainView(View):
+class MainView(LoginRequiredMixin, View):
 
     def get(self, request):
         tweets = Tweet.objects.all()
