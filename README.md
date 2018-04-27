@@ -5,7 +5,13 @@ User communication app.
   - after login user sees the unread messages send to him
   
 App is still in development. To be added
-  - registration form
+  - *registration form
   - responsiveness and look
   - message taggig
  
+ 
+ 
+ 
+ 
+ 
+ *basic one added
