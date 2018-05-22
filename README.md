@@ -13,5 +13,3 @@ App is still in development. To be added
  
  
  
- 
- *basic one added
